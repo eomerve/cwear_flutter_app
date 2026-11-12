@@ -12,15 +12,15 @@ workflows:
 
     
     scripts:
-      - name: Get Flutter packages
-        script: flutter pub get
+    - name: Get Flutter packages
+      script: flutter pub get
 
-      - name: Generate App Icons
-        script: dart run flutter_launcher_icons
+    - name: Generate App Icons
+      script: dart run flutter_launcher_icons
 
-      - name: Build iOS IPA
-        script: flutter build ipa --release --no-codesign
+    - name: Build iOS IPA
+      script: flutter build ipa --release --no-codesign
 
-    artifacts:
-      - build/ios/ipa/*.ipa
-      - build/ios/archive/*.xcarchive
+  artifacts:
+    - build/ios/ipa/*.ipa
+    - build/ios/archive/*.xcarchive
