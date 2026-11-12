@@ -10,16 +10,35 @@ workflows:
       xcode: latest
       cocoapods: default
 
+    
+workflows:
+  flutter-ios-device:
+    name: Flutter iOS Device Build
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+
     scripts:
       - name: Get Flutter packages
         script: flutter pub get
 
-      - name: Generate App Icons
+      - name: Generate app icons
         script: dart run flutter_launcher_icons
 
-      - name: Build iOS IPA
-        script: flutter build ipa --release --no-codesign
+      - name: Build iOS app
+        script: flutter build ios --release --no-codesign
+
+      - name: Package IPA
+        script: |
+          rm -rf Payload Runner.ipa
+          mkdir -p Payload
+          cp -R build/ios/iphoneos/Runner.app Payload/
+          zip -r Runner.ipa Payload
+          unzip -l Runner.ipa | head -30
 
     artifacts:
-      - build/ios/ipa/*.ipa
-      - build/ios/archive/*.xcarchive
+      - Runner.ipa
