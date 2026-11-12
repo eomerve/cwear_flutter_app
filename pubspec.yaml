@@ -1,0 +1,28 @@
+name: c_wear
+version: 1.0.1+2
+publish_to: none
+description: Responsive C-Wear respiratory monitoring UI with real QR scanning and explicitly simulated respiration readings.
+
+environment:
+  sdk: '>=3.9.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  mobile_scanner: 7.4.4
+  shared_preferences: 2.5.4
+  image_picker: 1.2.1
+  path_provider: 2.1.5
+  rename: ^3.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/default_avatar.jpeg
+    - assets/images/cwear_logo.png
+    - assets/images/cwear_brand_header_v5.png
