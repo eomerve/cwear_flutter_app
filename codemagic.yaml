@@ -10,20 +10,17 @@ workflows:
       xcode: latest
       cocoapods: default
 
+    
     scripts:
       - name: Get Flutter packages
         script: flutter pub get
 
-      - name: Build iOS Release
-        script: flutter build ios --release --no-codesign
+      - name: Generate App Icons
+        script: dart run flutter_launcher_icons
 
-      - name: Package IPA
-        script: |
-          mkdir -p Payload
-          cp -R build/ios/iphoneos/Runner.app Payload/
-          mkdir -p build/ios/ipa
-          /usr/bin/zip -r build/ios/ipa/Runner.ipa Payload
-          rm -rf Payload
+      - name: Build iOS IPA
+        script: flutter build ipa --release --no-codesign
 
     artifacts:
       - build/ios/ipa/*.ipa
+      - build/ios/archive/*.xcarchive
